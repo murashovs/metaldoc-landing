@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>МеталлДок: приемо-сдаточные акты в 1С без ручного набора</title>
+    <meta
+      name="description"
+      content="Сервис переносит данные сдатчика и табличную часть лома из приемо-сдаточных актов в 1С, подсвечивает спорные поля и после подтверждения создает документы и проводки."
+    />
+    <link rel="preload" href="assets/hero-document-recognition.png" as="image" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-elevate>
+      <a class="brand" href="#top" aria-label="МеталлДок">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span>МеталлДок</span>
+      </a>
+      <nav class="desktop-nav" aria-label="Основная навигация">
+        <a href="#workflow">Как работает</a>
+        <a href="#control">Контроль</a>
+        <a href="#calculator">Экономика</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="header-cta" href="#demo">
+        <i data-lucide="calendar-check" aria-hidden="true"></i>
+        <span>Демо</span>
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="Перенос данных из ПСА в 1С для металлоприемок">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="scan-beam" aria-hidden="true"></div>
+        <div class="container hero-content">
+          <p class="eyebrow">Для металлоприемок, главбухов и бухгалтерии</p>
+          <h1>Приемо-сдаточные акты в 1С без ручного набора</h1>
+          <p class="hero-copy">
+            Бухгалтер остается в 1С: выбирает комплект сканов за день. Сервис переносит
+            данные сдатчика: ФИО, паспорт, адрес и табличную часть по лому: позиции, вес,
+            цены, суммы. Спорное подсвечивается; после подтверждения создаются проводки
+            и документы.
+          </p>
+          <div class="hero-actions" aria-label="Действия">
+            <a class="btn primary" href="#demo">
+              <i data-lucide="play-circle" aria-hidden="true"></i>
+              <span>Проверить мои ПСА</span>
+            </a>
+            <a class="btn secondary" href="#calculator">
+              <i data-lucide="calculator" aria-hidden="true"></i>
+              <span>Оценить экономию</span>
+            </a>
+          </div>
+          <p class="hero-assurance">Запись в 1С только после подтверждения бухгалтера.</p>
+          <dl class="hero-metrics" aria-label="Ключевые преимущества">
+            <div>
+              <dt>Сканы за день</dt>
+              <dd>комплект сканов за день или смену</dd>
+            </div>
+            <div>
+              <dt>Проверка</dt>
+              <dd>внимание только к полям, которые нужно сверить</dd>
+            </div>
+            <div>
+              <dt>Готово для 1С</dt>
+              <dd>проводки и документы после подтверждения</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="trust-band" aria-label="Контроль и безопасность пилота">
+        <div class="container trust-grid">
+          <article>
+            <i data-lucide="shield-check" aria-hidden="true"></i>
+            <strong>Контроль перед записью</strong>
+            <span>документы и проводки создаются только после подтверждения</span>
+          </article>
+          <article>
+            <i data-lucide="history" aria-hidden="true"></i>
+            <strong>Журнал исправлений</strong>
+            <span>видно, какие поля проверялись и менялись</span>
+          </article>
+          <article>
+            <i data-lucide="lock-keyhole" aria-hidden="true"></i>
+            <strong>Персональные данные</strong>
+            <span>обсуждаем доступы и хранение до пилота</span>
+          </article>
+          <article>
+            <i data-lucide="file-search" aria-hidden="true"></i>
+            <strong>Пилот на ваших ПСА</strong>
+            <span>показываем качество на реальных сканах</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="pain-band">
+        <div class="container pain-layout">
+          <div>
+            <p class="section-kicker">Боль бухгалтерии</p>
+            <h2>Каждый приемо-сдаточный акт: десятки полей и риск ошибки</h2>
+          </div>
+          <div class="pain-grid">
+            <article class="pain-card">
+              <i data-lucide="file-pen-line" aria-hidden="true"></i>
+              <h3>Рукопись и печать в одном акте</h3>
+              <p>ФИО, адреса, паспортные данные и табличная часть приходится сверять по скану.</p>
+            </article>
+            <article class="pain-card">
+              <i data-lucide="table-properties" aria-hidden="true"></i>
+              <h3>Строки лома требуют внимания</h3>
+              <p>Вид лома, вес, цена и суммы должны попасть в учет без перекоса по строкам.</p>
+            </article>
+            <article class="pain-card">
+              <i data-lucide="badge-alert" aria-hidden="true"></i>
+              <h3>Ошибка в первичке дорого обходится</h3>
+              <p>Неверная серия паспорта или адрес регистрации потом всплывают в сверках.</p>
+            </article>
+            <article class="pain-card">
+              <i data-lucide="clock-3" aria-hidden="true"></i>
+              <h3>Время уходит не на контроль</h3>
+              <p>Бухгалтер заново набирает данные, которые уже есть в приемо-сдаточном акте.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow" class="section">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-kicker">Процесс</p>
+            <h2>От сканов к документам 1С в шесть шагов</h2>
+            <p>
+              Сервис переносит данные из комплекта сканов и готовит документы, а бухгалтер
+              проверяет спорные места перед записью в учет.
+            </p>
+          </div>
+          <div class="workflow-grid">
+            <article class="step-card">
+              <span>01</span>
+              <i data-lucide="scan-line" aria-hidden="true"></i>
+              <h3>Выбираете комплект сканов</h3>
+              <p>Оператор или бухгалтер выбирает один файл или несколько сканов за смену.</p>
+            </article>
+            <article class="step-card">
+              <span>02</span>
+              <i data-lucide="file-input" aria-hidden="true"></i>
+              <h3>Данные переносятся</h3>
+              <p>ФИО, паспорт, адрес регистрации и строки лома с весом, ценами и суммами попадают в нужные поля.</p>
+            </article>
+            <article class="step-card">
+              <span>03</span>
+              <i data-lucide="git-compare-arrows" aria-hidden="true"></i>
+              <h3>Формы сопоставляются</h3>
+              <p>Сервис понимает разные названия полей и варианты ваших шаблонов.</p>
+            </article>
+            <article class="step-card">
+              <span>04</span>
+              <i data-lucide="shield-check" aria-hidden="true"></i>
+              <h3>Спорное подсвечивается</h3>
+              <p>Бухгалтер сразу видит места, которые лучше сверить со сканом.</p>
+            </article>
+            <article class="step-card">
+              <span>05</span>
+              <i data-lucide="file-check-2" aria-hidden="true"></i>
+              <h3>Бухгалтер проверяет</h3>
+              <p>Исправляет значение при необходимости и подтверждает результат.</p>
+            </article>
+            <article class="step-card">
+              <span>06</span>
+              <i data-lucide="database-zap" aria-hidden="true"></i>
+              <h3>Создаются документы и проводки</h3>
+              <p>После подтверждения в 1С появляются нужные документы, движения и учетная история.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="control" class="section control-section">
+        <div class="container control-layout">
+          <div class="control-copy">
+            <p class="section-kicker">Контроль качества</p>
+            <h2>Спорные поля не уходят в учет без проверки</h2>
+            <p>
+              Бухгалтер видит, какие данные можно принять сразу, а какие нужно сверить
+              по скану. Документ создается в 1С только после подтверждения, поэтому контроль
+              остается у вашей команды.
+            </p>
+            <ul class="check-list">
+              <li><i data-lucide="check" aria-hidden="true"></i>статус проверки по каждому важному полю;</li>
+              <li><i data-lucide="check" aria-hidden="true"></i>подсветка исходного места на скане;</li>
+              <li><i data-lucide="check" aria-hidden="true"></i>история исправлений перед созданием документа;</li>
+              <li><i data-lucide="check" aria-hidden="true"></i>отдельные правила для паспортов, адресов и строк лома.</li>
+            </ul>
+          </div>
+          <div class="verification-panel" aria-label="Пример интерфейса проверки">
+            <div class="panel-top">
+              <span class="status-dot"></span>
+              <strong>Проверка акта № 1487</strong>
+              <span class="confidence">92%</span>
+            </div>
+            <div class="panel-body">
+              <div class="document-preview">
+                <div class="doc-line wide"></div>
+                <div class="doc-line"></div>
+                <div class="doc-field ok"></div>
+                <div class="doc-field warn"></div>
+                <div class="doc-table">
+                  <span></span><span></span><span></span>
+                  <span></span><span></span><span></span>
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="field-list">
+                <button class="field-row active" type="button">
+                  <span>ФИО сдатчика</span>
+                  <strong>готово</strong>
+                </button>
+                <button class="field-row" type="button">
+                  <span>Паспортные данные</span>
+                  <strong>готово</strong>
+                </button>
+                <button class="field-row" type="button">
+                  <span>Адрес регистрации</span>
+                  <strong>готово</strong>
+                </button>
+                <button class="field-row warn" type="button">
+                  <span>Цена по строке лома</span>
+                  <strong>проверить</strong>
+                </button>
+                <button class="field-row" type="button">
+                  <span>Вес и сумма</span>
+                  <strong>готово</strong>
+                </button>
+              </div>
+            </div>
+            <div class="panel-actions">
+              <button type="button">
+                <i data-lucide="undo-2" aria-hidden="true"></i>
+                <span>Вернуть</span>
+              </button>
+              <button type="button" class="approve">
+                <i data-lucide="check-circle-2" aria-hidden="true"></i>
+                <span>Создать в 1С</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mini-cta-section">
+        <div class="container mini-cta">
+          <div>
+            <strong>Хотите увидеть проверку на реальных актах?</strong>
+            <span>Возьмем несколько ваших ПСА и покажем результат до записи в учет.</span>
+          </div>
+          <a class="btn primary" href="#demo">
+            <i data-lucide="file-search" aria-hidden="true"></i>
+            <span>Проверить мои ПСА</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section audience-section">
+        <div class="container">
+          <div class="section-head compact">
+            <p class="section-kicker">Для кого</p>
+            <h2>Понятная выгода для главбуха, бухгалтера и собственника</h2>
+          </div>
+          <div class="audience-tabs" role="tablist" aria-label="Целевая аудитория">
+            <button class="tab is-active" type="button" role="tab" aria-selected="true" data-audience="chief">
+              <i data-lucide="briefcase-business" aria-hidden="true"></i>
+              Главбух
+            </button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-audience="accountant">
+              <i data-lucide="clipboard-check" aria-hidden="true"></i>
+              Бухгалтер
+            </button>
+            <button class="tab" type="button" role="tab" aria-selected="false" data-audience="owner">
+              <i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>
+              Собственник
+            </button>
+          </div>
+          <div class="audience-card" id="audience-card">
+            <p class="audience-label">Главбух</p>
+            <h3>Меньше ошибок в первичке и понятный контроль перед проводками</h3>
+            <p>
+              Видны спорные поля, исправления и статус документов. Команда меньше набирает
+              вручную и больше занимается контролем.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="calculator" class="section calculator-section">
+        <div class="container calculator-layout">
+          <div class="calculator-copy">
+            <p class="section-kicker">Экономика</p>
+            <h2>Посчитайте, сколько часов бухгалтерии уходит на ручной ввод актов</h2>
+            <p>
+              Введите свои объемы. Калькулятор показывает ориентир экономии, если вместо
+              ручного ввода каждого акта остается проверка исключений.
+            </p>
+          </div>
+          <form class="calculator" aria-label="Калькулятор экономии">
+            <label>
+              <span>Актов в день</span>
+              <input id="actsPerDay" type="number" min="1" max="5000" value="120" />
+            </label>
+            <label>
+              <span>Минут ручного ввода на акт</span>
+              <input id="minutesPerAct" type="number" min="1" max="60" value="4" />
+            </label>
+            <label>
+              <span>Стоимость часа бухгалтера, ₽</span>
+              <input id="hourCost" type="number" min="100" max="10000" value="650" />
+            </label>
+            <label>
+              <span>Рабочих дней в месяц</span>
+              <input id="workDays" type="number" min="1" max="31" value="22" />
+            </label>
+            <div class="savings-result" aria-live="polite">
+              <div>
+                <span>Освобождается в месяц</span>
+                <strong id="hoursSaved">0 ч</strong>
+              </div>
+              <div>
+                <span>Эквивалент фонда времени</span>
+                <strong id="moneySaved">0 ₽</strong>
+              </div>
+            </div>
+            <p class="calculator-note">
+              Расчет предполагает, что после внедрения вручную остается около 25% прежней
+              работы. Реальная экономия зависит от качества сканов и шаблонов актов.
+            </p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section metal-section">
+        <div class="container metal-layout">
+          <div>
+            <p class="section-kicker">Почему именно лом</p>
+            <h2>Учитываем специфику металлоприемок</h2>
+          </div>
+          <div class="metal-grid">
+            <article class="metal-card">
+              <span></span>
+              <h3>Паспорт и регистрация</h3>
+              <p>Данные физлица раскладываются по нужным полям, а не превращаются в один длинный текст.</p>
+            </article>
+            <article class="metal-card">
+              <span></span>
+              <h3>Табличная часть лома</h3>
+              <p>Позиции, вес, цена и суммы переносятся отдельно от данных сдатчика.</p>
+            </article>
+            <article class="metal-card">
+              <span></span>
+              <h3>Разные формы актов</h3>
+              <p>Сопоставление названий полей помогает работать с разными шаблонами и филиалами.</p>
+            </article>
+            <article class="metal-card">
+              <span></span>
+              <h3>Комплект сканов</h3>
+              <p>Можно обработать один общий файл или несколько сканов за смену.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section integration-section">
+        <div class="container integration-layout">
+          <div class="integration-visual" aria-label="Схема интеграции">
+            <div class="integration-node paper">
+              <i data-lucide="files" aria-hidden="true"></i>
+              <span>Сканы ПСА</span>
+            </div>
+            <div class="integration-line"></div>
+            <div class="integration-node processor">
+              <i data-lucide="settings-2" aria-hidden="true"></i>
+              <span>Модуль обработки</span>
+            </div>
+            <div class="integration-line"></div>
+            <div class="integration-node erp">
+              <span class="erp-mark">1С</span>
+              <span class="erp-title">Учет после проверки</span>
+              <span class="erp-chips">
+                <b>Документы</b>
+                <b>Проводки</b>
+                <b>Движения</b>
+              </span>
+            </div>
+          </div>
+          <div>
+            <p class="section-kicker">Внедрение</p>
+            <h2>Остаемся в привычном процессе 1С</h2>
+            <p>
+              Вся работа для пользователя остается в привычном сценарии 1С: выбрали комплект сканов,
+              проверили подсветку, подтвердили создание документов и проводок. Без отдельной программы
+              для бухгалтерии и без лишних шагов в ежедневной работе.
+            </p>
+            <div class="proof-strip">
+              <span><i data-lucide="settings-2" aria-hidden="true"></i> правила под ваш шаблон</span>
+              <span><i data-lucide="lock-keyhole" aria-hidden="true"></i> контроль доступа</span>
+              <span><i data-lucide="list-checks" aria-hidden="true"></i> журнал проверки</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="section faq-section">
+        <div class="container faq-layout">
+          <div>
+            <p class="section-kicker">Вопросы</p>
+            <h2>Что обычно уточняют перед пилотом</h2>
+          </div>
+          <div class="faq-list">
+            <details open>
+              <summary>Что если акт заполнен неразборчиво?</summary>
+              <p>
+                Такие поля остаются на проверке. Система показывает бухгалтеру место на скане
+                и не записывает спорное значение в учет без подтверждения.
+              </p>
+            </details>
+            <details>
+              <summary>Кто отвечает, если поле перенеслось неверно?</summary>
+              <p>
+                Спорные значения не записываются в учет автоматически. Бухгалтер видит подсветку,
+                сверяет поле со сканом и подтверждает документ перед созданием в 1С.
+              </p>
+            </details>
+            <details>
+              <summary>Что с персональными данными из паспортов?</summary>
+              <p>
+                На пилоте заранее согласуем, кто имеет доступ к сканам, где они обрабатываются
+                и как долго хранятся. Это отдельная часть внедрения для документов с паспортными данными.
+              </p>
+            </details>
+            <details>
+              <summary>Есть ли журнал проверки?</summary>
+              <p>
+                Да, сценарий предусматривает контроль статусов и исправлений перед созданием
+                документов. Это помогает главбуху видеть, что проверялось вручную.
+              </p>
+            </details>
+            <details>
+              <summary>Подойдет ли для нашей конфигурации 1С?</summary>
+              <p>
+                На старте смотрим вашу конфигурацию, шаблоны ПСА и правила учета. После этого
+                определяем объем доработок и формат пилота.
+              </p>
+            </details>
+            <details>
+              <summary>Можно ли работать с разными шаблонами ПСА?</summary>
+              <p>
+                Да. Логика сопоставления полей рассчитана на разные названия и расположение
+                блоков. Для пилота фиксируются ваши основные формы и правила обработки.
+              </p>
+            </details>
+            <details>
+              <summary>Нужно ли менять текущую 1С?</summary>
+              <p>
+                Сценарий остается внутри 1С: сканы отправляются на обработку, а обратно
+                возвращаются проверяемые поля для создания документов.
+              </p>
+            </details>
+            <details>
+              <summary>С чего лучше начать внедрение?</summary>
+              <p>
+                С пилота на реальных сканах за один период: оцениваем качество, список полей,
+                скорость проверки, экономию времени и дорабатываем правила под ваш поток.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section id="demo" class="demo-section">
+        <div class="container demo-layout">
+          <div>
+            <p class="section-kicker light">Пилот</p>
+            <h2>Покажем на ваших актах, сколько ручного ввода можно убрать</h2>
+            <p>
+              Возьмем несколько реальных ПСА, покажем перенос данных и сценарий проверки
+              перед созданием документов в 1С.
+            </p>
+          </div>
+          <form class="demo-form" aria-label="Заявка на демо">
+            <label>
+              <span>Компания</span>
+              <input type="text" name="company" autocomplete="organization" required />
+            </label>
+            <label>
+              <span>Телефон или email</span>
+              <input type="text" name="contact" autocomplete="email" required />
+            </label>
+            <button class="btn primary light-btn" type="submit">
+              <i data-lucide="send" aria-hidden="true"></i>
+              <span>Запустить пилот</span>
+            </button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <a class="brand footer-brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">M</span>
+          <span>МеталлДок</span>
+        </a>
+        <p>Перенос данных из ПСА в 1С с проверкой бухгалтером.</p>
+      </div>
+    </footer>
+
+    <script src="assets/lucide.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
