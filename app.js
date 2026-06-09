@@ -50,7 +50,7 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   const data = new FormData(form);
   const company = data.get("company") || "вашей компании";
-  formNote.textContent = `Готово: заявка для ${company} сформирована. Мы свяжемся, чтобы показать демо на ваших актах.`;
+  formNote.textContent = `Готово: заявка для ${company} сформирована. Мы свяжемся, чтобы проверить распознавание на ваших актах.`;
   formNote.classList.add("success");
   form.querySelector(".form-button span").textContent = "Заявка готова";
 });

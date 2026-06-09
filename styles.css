@@ -182,6 +182,7 @@ select {
 .btn svg,
 .header-cta svg,
 .trust-row svg,
+.proof-strip svg,
 .info-card svg,
 .step-card svg,
 .audience-card svg,
@@ -197,7 +198,7 @@ select {
 }
 
 .section-band {
-  padding: 64px max(24px, calc((100vw - 1180px) / 2));
+  padding: 58px max(24px, calc((100vw - 1180px) / 2));
 }
 
 section[id] {
@@ -208,7 +209,7 @@ section[id] {
   position: relative;
   isolation: isolate;
   display: grid;
-  min-height: 646px;
+  min-height: 628px;
   align-items: center;
   overflow: hidden;
   color: #fff;
@@ -384,7 +385,59 @@ h3 {
 
 .section-heading {
   max-width: 760px;
-  margin-bottom: 34px;
+  margin-bottom: 30px;
+}
+
+.proof-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0 max(24px, calc((100vw - 1180px) / 2));
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+
+.proof-strip-item {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  min-height: 84px;
+  padding: 18px 22px;
+  color: #2f3d49;
+  border-right: 1px solid rgba(216, 226, 228, 0.86);
+}
+
+.proof-strip-item:first-child {
+  padding-left: 0;
+}
+
+.proof-strip-item:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.proof-strip-item svg {
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  color: var(--teal-dark);
+}
+
+.proof-strip-item strong,
+.proof-strip-item small {
+  display: block;
+}
+
+.proof-strip-item strong {
+  color: var(--ink);
+  font-size: 0.98rem;
+  line-height: 1.2;
+}
+
+.proof-strip-item small {
+  margin-top: 4px;
+  color: #65717d;
+  font-size: 0.86rem;
+  line-height: 1.35;
 }
 
 .pain {
@@ -392,8 +445,8 @@ h3 {
 }
 
 .pain.section-band {
-  padding-top: 68px;
-  padding-bottom: 62px;
+  padding-top: 54px;
+  padding-bottom: 54px;
 }
 
 .pain-grid,
@@ -527,8 +580,8 @@ h3 {
 }
 
 .fields.section-band {
-  padding-top: 58px;
-  padding-bottom: 42px;
+  padding-top: 50px;
+  padding-bottom: 38px;
 }
 
 .field-cloud {
@@ -573,8 +626,8 @@ h3 {
 }
 
 .calculator.section-band {
-  padding-top: 50px;
-  padding-bottom: 62px;
+  padding-top: 44px;
+  padding-bottom: 54px;
 }
 
 .calculator-layout {
@@ -676,8 +729,8 @@ h3 {
 }
 
 .security.section-band {
-  padding-top: 62px;
-  padding-bottom: 62px;
+  padding-top: 54px;
+  padding-bottom: 54px;
 }
 
 .security-layout {
@@ -761,8 +814,8 @@ h3 {
 }
 
 .proof.section-band {
-  padding-top: 62px;
-  padding-bottom: 62px;
+  padding-top: 54px;
+  padding-bottom: 54px;
 }
 
 .proof .section-kicker {
@@ -783,8 +836,8 @@ h3 {
 }
 
 .proof-item {
-  min-height: 132px;
-  padding: 20px;
+  min-height: 116px;
+  padding: 18px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: var(--radius);
@@ -792,7 +845,7 @@ h3 {
 
 .proof-item strong {
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   color: #f9c453;
   font-size: 1rem;
 }
@@ -813,8 +866,8 @@ h3 {
 }
 
 .demo.section-band {
-  padding-top: 66px;
-  padding-bottom: 66px;
+  padding-top: 56px;
+  padding-bottom: 58px;
 }
 
 .demo-copy {
@@ -937,12 +990,29 @@ h3 {
 
 @media (max-width: 920px) {
   .section-band {
-    padding: 54px 22px;
+    padding: 48px 22px;
   }
 
   .hero {
-    min-height: 620px;
+    min-height: 592px;
     background-position: 58% center;
+  }
+
+  .proof-strip {
+    grid-template-columns: 1fr;
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  .proof-strip-item {
+    min-height: 74px;
+    padding: 15px 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(216, 226, 228, 0.86);
+  }
+
+  .proof-strip-item:last-child {
+    border-bottom: 0;
   }
 
   h1 {
@@ -994,9 +1064,9 @@ h3 {
   }
 
   .hero {
-    min-height: 588px;
-    padding-top: 56px;
-    padding-bottom: 44px;
+    min-height: 552px;
+    padding-top: 46px;
+    padding-bottom: 38px;
     background:
       linear-gradient(90deg, rgba(8, 13, 17, 0.96) 0%, rgba(8, 13, 17, 0.86) 54%, rgba(8, 13, 17, 0.46) 100%),
       url("assets/hero-psa-1c.png") 48% center / cover no-repeat;
@@ -1005,6 +1075,7 @@ h3 {
   h1 {
     font-size: 2.36rem;
     line-height: 1.04;
+    margin-bottom: 18px;
   }
 
   h2 {
@@ -1015,31 +1086,127 @@ h3 {
   .section-copy,
   .demo-copy p {
     font-size: 1rem;
+    line-height: 1.54;
   }
 
-  .hero-actions,
-  .trust-row {
+  .hero .eyebrow {
+    margin-bottom: 14px;
+  }
+
+  .hero-actions {
+    margin: 24px 0 18px;
     align-items: stretch;
     flex-direction: column;
   }
 
-  .btn,
-  .trust-row span {
+  .btn {
     width: 100%;
+  }
+
+  .trust-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .trust-row span {
+    min-height: 36px;
+    padding: 7px 9px;
+    font-size: 0.84rem;
+  }
+
+  .trust-row span:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .proof-strip-item {
+    min-height: 58px;
+    padding: 11px 0;
+  }
+
+  .proof-strip-item small {
+    display: none;
+  }
+
+  .pain.section-band,
+  .security.section-band,
+  .proof.section-band {
+    padding-top: 44px;
+    padding-bottom: 44px;
+  }
+
+  .fields.section-band,
+  .calculator.section-band {
+    padding-top: 40px;
+    padding-bottom: 42px;
+  }
+
+  .demo.section-band {
+    padding-top: 46px;
+    padding-bottom: 46px;
   }
 
   .workflow-track {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .step-card,
   .info-card,
   .audience-card {
     min-height: auto;
+    padding: 20px;
+  }
+
+  .info-card svg,
+  .audience-card svg,
+  .step-card > svg {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 14px;
+  }
+
+  .section-heading {
+    margin-bottom: 24px;
+  }
+
+  .pain-grid,
+  .audience-grid,
+  .outcome-list,
+  .demo-points,
+  .calc-panel,
+  .calc-results {
+    gap: 12px;
+  }
+
+  .outcome-item,
+  .calc-panel,
+  .calc-results,
+  .lead-form {
+    padding: 20px;
+  }
+
+  .security-board {
+    padding: 18px;
+  }
+
+  .signal-row {
+    min-height: 50px;
+    padding: 10px;
+  }
+
+  .proof-layout {
+    gap: 28px;
   }
 
   .proof-items {
     grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .proof-item {
+    min-height: auto;
+    padding: 16px;
   }
 
   .site-footer {
@@ -1050,6 +1217,13 @@ h3 {
 
 @media (max-width: 440px) {
   .section-band {
+    padding-top: 42px;
+    padding-bottom: 42px;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .proof-strip {
     padding-right: 16px;
     padding-left: 16px;
   }
@@ -1081,7 +1255,7 @@ h3 {
   }
 
   .hero {
-    min-height: 564px;
+    min-height: 528px;
   }
 
   h1 {
