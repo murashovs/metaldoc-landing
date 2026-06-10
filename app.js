@@ -77,6 +77,7 @@ form.addEventListener("submit", async (event) => {
   const data = Object.fromEntries(new FormData(form).entries());
   data.page = window.location.href;
   data.referrer = document.referrer || "не указан";
+  data.site = "robotpsa.ru";
 
   button.disabled = true;
   buttonText.textContent = "Отправляем...";
