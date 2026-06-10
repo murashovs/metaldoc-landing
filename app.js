@@ -7,10 +7,13 @@ const calc = {
   manual: document.querySelector("#manualRange"),
   review: document.querySelector("#reviewRange"),
   days: document.querySelector("#daysRange"),
+  hourRate: document.querySelector("#hourRateRange"),
   actsOut: document.querySelector("#actsOut"),
   manualOut: document.querySelector("#manualOut"),
   reviewOut: document.querySelector("#reviewOut"),
   daysOut: document.querySelector("#daysOut"),
+  hourRateOut: document.querySelector("#hourRateOut"),
+  moneySaved: document.querySelector("#moneySaved"),
   hoursSaved: document.querySelector("#hoursSaved"),
   daysSaved: document.querySelector("#daysSaved"),
   factorSaved: document.querySelector("#factorSaved"),
@@ -21,23 +24,27 @@ function updateCalculator() {
   const manual = Number(calc.manual.value);
   const review = Number(calc.review.value);
   const days = Number(calc.days.value);
+  const hourRate = Number(calc.hourRate.value);
 
   const manualHours = (acts * manual * days) / 60;
   const reviewHours = (acts * review * days) / 60;
   const savedHours = Math.max(manualHours - reviewHours, 0);
   const savedDays = savedHours / 8;
+  const savedMoney = savedHours * hourRate;
   const factor = reviewHours > 0 ? manualHours / reviewHours : 0;
 
   calc.actsOut.textContent = formatNumber.format(acts);
   calc.manualOut.textContent = formatNumber.format(manual);
   calc.reviewOut.textContent = review.toFixed(1).replace(".", ",");
   calc.daysOut.textContent = formatNumber.format(days);
+  calc.hourRateOut.textContent = `${formatNumber.format(hourRate)} ₽`;
+  calc.moneySaved.textContent = `${formatNumber.format(savedMoney)} ₽/мес`;
   calc.hoursSaved.textContent = `${formatNumber.format(savedHours)} ч/мес`;
   calc.daysSaved.textContent = `${formatNumber.format(savedDays)} дней`;
   calc.factorSaved.textContent = `в ${factor.toFixed(1).replace(".", ",")} раза`;
 }
 
-["acts", "manual", "review", "days"].forEach((key) => {
+["acts", "manual", "review", "days", "hourRate"].forEach((key) => {
   calc[key].addEventListener("input", updateCalculator);
 });
 
