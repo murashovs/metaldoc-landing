@@ -34,7 +34,7 @@ if "use_backend https_robotpsa if robotpsa_www" not in text:
     new = "\tuse_backend https_robotpsa if robotpsa_www\n" + old
     text = replace_once(text, old, new, "robotpsa SNI backend route")
 
-if "backend https_robotpsa" not in text:
+if "\nbackend https_robotpsa\n" not in text:
     old = (
         "backend https_mail\n"
         "    mode tcp\n"
@@ -64,21 +64,15 @@ if "frontend robotpsa_https_terminator" not in text:
     )
     text = replace_once(text, "\nfrontend http_front80\n", terminator + "frontend http_front80\n", "robotpsa TLS terminator")
 
-robotpsa_acl = "        acl is_robotpsa hdr(host) -i robotpsa.ru www.robotpsa.ru robotpsa.ru:80 www.robotpsa.ru:80\n"
-if "acl robotpsa_acme path_beg /.well-known/acme-challenge/" not in text:
+redirect_acl = "\tacl robotpsa_host_redirect hdr(host) -i robotpsa.ru www.robotpsa.ru robotpsa.ru:80 www.robotpsa.ru:80\n"
+if "acl robotpsa_host_redirect hdr(host)" not in text:
     text = replace_once(
         text,
-        robotpsa_acl,
-        robotpsa_acl + "        acl robotpsa_acme path_beg /.well-known/acme-challenge/\n",
-        "robotpsa ACME ACL",
-    )
-
-redirect_rule = "        http-request redirect scheme https code 301 if is_robotpsa !robotpsa_acme\n"
-if redirect_rule not in text:
-    text = replace_once(
-        text,
-        "        use_backend robotpsa_web80 if is_robotpsa\n",
-        redirect_rule + "        use_backend robotpsa_web80 if is_robotpsa\n",
+        "\toption httpclose\n",
+        "\toption httpclose\n"
+        + redirect_acl
+        + "\tacl robotpsa_acme_redirect path_beg /.well-known/acme-challenge/\n"
+        + "\thttp-request redirect scheme https code 301 if robotpsa_host_redirect !robotpsa_acme_redirect\n",
         "robotpsa HTTP redirect",
     )
 
