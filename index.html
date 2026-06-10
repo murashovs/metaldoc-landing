@@ -15,6 +15,10 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="assets/hero-psa-1c.png" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23172027'/%3E%3Cpath d='M18 44V14h19c7 0 12 5 12 12 0 6-4 10-10 11l11 7H38l-10-7v7H18Zm10-16h8c3 0 5-2 5-5s-2-5-5-5h-8v10Z' fill='%2364f4df'/%3E%3C/svg%3E"
+    />
     <link rel="preload" href="assets/hero-psa-1c.png" as="image" />
     <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
@@ -403,7 +407,7 @@
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_next" value="https://robotpsa.ru/?sent=1#demo" />
           <input type="hidden" name="source" value="robotpsa.ru" />
-          <label class="form-trap" aria-hidden="true">
+          <label class="form-trap" hidden aria-hidden="true">
             <span>Сайт</span>
             <input name="website" type="text" tabindex="-1" autocomplete="off" />
           </label>
@@ -437,6 +441,73 @@
         </form>
       </section>
     </main>
+
+    <section class="chat-widget" data-chat aria-label="Чат по распознаванию ПСА">
+      <button class="chat-launcher" type="button" data-chat-open aria-label="Открыть чат">
+        <span class="chat-launcher-icon" aria-hidden="true">
+          <i data-lucide="message-circle"></i>
+        </span>
+        <span class="chat-launcher-copy">
+          <strong>Задать вопрос</strong>
+          <small>по ПСА и 1С</small>
+        </span>
+      </button>
+
+      <div class="chat-panel" data-chat-panel role="dialog" aria-modal="false" aria-labelledby="chatTitle" hidden>
+        <div class="chat-panel-header">
+          <div>
+            <strong id="chatTitle">Поможем с ПСА</strong>
+            <span>Ответим и подскажем следующий шаг</span>
+          </div>
+          <button class="chat-icon-button" type="button" data-chat-close aria-label="Свернуть чат">
+            <i data-lucide="x" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div class="chat-messages" data-chat-messages aria-live="polite">
+          <div class="chat-message bot">
+            <span>Напишите вопрос или оставьте телефон. Расскажем, как убрать ручной ввод приемо-сдаточных актов и загрузить данные в 1С.</span>
+          </div>
+        </div>
+
+        <div class="chat-quick" aria-label="Быстрые вопросы">
+          <button type="button" data-chat-quick="demo">
+            <i data-lucide="calendar-check" aria-hidden="true"></i>
+            Хочу демо
+          </button>
+          <button type="button" data-chat-quick="economy">
+            <i data-lucide="calculator" aria-hidden="true"></i>
+            Посчитать экономию
+          </button>
+          <button type="button" data-chat-quick="one-c">
+            <i data-lucide="database-zap" aria-hidden="true"></i>
+            Как с 1С
+          </button>
+          <button type="button" data-chat-quick="acts">
+            <i data-lucide="files" aria-hidden="true"></i>
+            Есть свои ПСА
+          </button>
+        </div>
+
+        <form class="chat-composer" data-chat-form>
+          <label class="form-trap" hidden aria-hidden="true">
+            <span>Сайт</span>
+            <input name="website" type="text" tabindex="-1" autocomplete="off" />
+          </label>
+          <textarea
+            name="message"
+            rows="1"
+            placeholder="Напишите сообщение..."
+            aria-label="Сообщение в чат"
+            required
+          ></textarea>
+          <button class="chat-send" type="submit" aria-label="Отправить сообщение">
+            <i data-lucide="send" aria-hidden="true"></i>
+          </button>
+          <p class="chat-note" data-chat-note>Можно написать вопрос, объем ПСА или просто “хочу демо”.</p>
+        </form>
+      </div>
+    </section>
 
     <footer class="site-footer">
       <div class="brand footer-brand">

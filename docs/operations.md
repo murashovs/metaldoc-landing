@@ -125,14 +125,17 @@ curl -sSI http://robotpsa.ru/
 
 ## Форма обратной связи
 
-Форма отправляется через FormSubmit:
+Форма и чат отправляются через FormSubmit:
 
 - AJAX endpoint: `https://formsubmit.co/ajax/doctormail@yandex.ru`
 - HTML fallback action: `https://formsubmit.co/doctormail@yandex.ru`
 - Тема письма: `Новая заявка с лендинга Робот ПСА`
+- Тема письма из чата: `Диалог из чата Робот ПСА`
 - Источник: `robotpsa.ru`
 
 Важно: FormSubmit обычно требует подтверждения адреса при первой заявке. Если письма не приходят, проверить входящие и спам на `doctormail@yandex.ru` и подтвердить FormSubmit.
+
+Чат работает как клиентский виджет: быстрые реплики и свободный ввод ведут посетителя к телефону, Telegram или email. Когда контакт найден в сообщении, на почту отправляется вся стенограмма диалога.
 
 Fallback `_next` указывает на:
 
