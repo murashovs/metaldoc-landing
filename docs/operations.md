@@ -22,6 +22,12 @@ visitor -> 45.10.245.231:443 -> HAProxy https_frontend, TCP/SNI
 
 Такой вариант сохраняет текущий TCP/SNI passthrough для `mail.itpr.ru`, `appserv1c.navika.ru` и `appserv1c1.navika.ru`.
 
+HTTPS-ответы отдают HSTS:
+
+```text
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
+
 ## Репозиторий
 
 - GitHub: `https://github.com/murashovs/metaldoc-landing.git`

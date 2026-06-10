@@ -59,6 +59,7 @@ if "frontend robotpsa_https_terminator" not in text:
         "    option httplog\n"
         "    http-request set-header X-Forwarded-Proto https\n"
         "    http-request set-header X-Forwarded-Host %[req.hdr(Host)]\n"
+        "    http-response set-header Strict-Transport-Security \"max-age=31536000; includeSubDomains\"\n"
         "    default_backend robotpsa_web80\n"
         "\n"
     )
