@@ -381,7 +381,22 @@
             </div>
           </div>
         </div>
-        <form class="lead-form" aria-label="Заявка на демонстрацию">
+        <form
+          class="lead-form"
+          id="leadForm"
+          action="https://formsubmit.co/doctormail@yandex.ru"
+          method="POST"
+          aria-label="Заявка на демонстрацию"
+        >
+          <input type="hidden" name="_subject" value="Новая заявка с лендинга МеталлДок" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://murashovs.github.io/metaldoc-landing/?sent=1#demo" />
+          <input type="hidden" name="source" value="metaldoc-landing" />
+          <label class="form-trap" aria-hidden="true">
+            <span>Сайт</span>
+            <input name="website" type="text" tabindex="-1" autocomplete="off" />
+          </label>
           <label>
             <span>Компания</span>
             <input name="company" type="text" placeholder="Например: Металл Плюс" autocomplete="organization" required />
