@@ -28,6 +28,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: hidden;
   color: var(--ink);
   background: var(--paper);
   font-family:
@@ -260,6 +261,20 @@ section[id] {
 
 .hero .eyebrow {
   color: #b7fff5;
+  max-width: min(100%, 560px);
+  padding: 10px 14px 10px 12px;
+  margin-bottom: 22px;
+  font-size: 0.88rem;
+  line-height: 1.18;
+  background: linear-gradient(135deg, rgba(9, 142, 129, 0.38), rgba(249, 196, 83, 0.18));
+  border: 1px solid rgba(183, 255, 245, 0.4);
+  border-radius: 999px;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.eyebrow-text {
+  min-width: 0;
 }
 
 .pulse-dot {
@@ -1112,6 +1127,9 @@ h3 {
 
   .hero .eyebrow {
     margin-bottom: 14px;
+    align-items: flex-start;
+    padding: 9px 12px;
+    border-radius: 14px;
   }
 
   .hero-actions {
@@ -1126,7 +1144,7 @@ h3 {
 
   .trust-row {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 8px;
   }
 
@@ -1134,10 +1152,6 @@ h3 {
     min-height: 36px;
     padding: 7px 9px;
     font-size: 0.84rem;
-  }
-
-  .trust-row span:last-child {
-    grid-column: 1 / -1;
   }
 
   .proof-strip-item {
@@ -1286,6 +1300,11 @@ h3 {
   .eyebrow,
   .section-kicker {
     font-size: 0.76rem;
+  }
+
+  .hero .eyebrow {
+    max-width: 100%;
+    font-size: 0.78rem;
   }
 
   .calc-results strong {
