@@ -185,6 +185,66 @@ if (navToggle && siteNav) {
   });
 }
 
+function initRevealEffects() {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    return;
+  }
+
+  const revealTargets = document.querySelectorAll(
+    [
+      ".hero-copy > *",
+      ".proof-strip-item",
+      ".section-kicker",
+      ".section-heading h2",
+      ".section-copy",
+      ".info-card",
+      ".outcome-item",
+      ".step-card",
+      ".field-cloud span",
+      ".calculator-copy",
+      ".calc-panel",
+      ".calc-results",
+      ".audience-card",
+      ".security-board",
+      ".security-copy",
+      ".proof-copy",
+      ".proof-item",
+      ".faq-item",
+      ".demo-copy",
+      ".demo-points > div",
+      ".lead-form",
+    ].join(","),
+  );
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        const target = entry.target;
+        target.classList.add("reveal-enter");
+        void target.offsetWidth;
+        target.classList.add("in-view");
+        observer.unobserve(target);
+      });
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.14 },
+  );
+
+  revealTargets.forEach((target, index) => {
+    target.style.setProperty("--reveal-delay", `${(index % 4) * 70}ms`);
+    observer.observe(target);
+  });
+}
+
+initRevealEffects();
+
 function initIcons() {
   if (window.lucide) {
     window.lucide.createIcons({

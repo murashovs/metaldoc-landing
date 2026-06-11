@@ -14,6 +14,8 @@
   --plum: #6f42c1;
   --shadow: 0 20px 60px rgba(22, 32, 39, 0.14);
   --soft-shadow: 0 12px 34px rgba(22, 32, 39, 0.1);
+  --lift-shadow: 0 24px 56px rgba(22, 32, 39, 0.16);
+  --motion-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
   --radius: 8px;
   color-scheme: light;
 }
@@ -150,7 +152,7 @@ textarea {
   border-radius: 999px;
   transform: scaleX(0);
   transform-origin: center;
-  transition: transform 180ms ease;
+  transition: transform 220ms var(--motion-ease);
 }
 
 .nav-links a:hover::after {
@@ -159,6 +161,7 @@ textarea {
 
 .header-cta,
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -171,10 +174,12 @@ textarea {
   font-weight: 700;
   line-height: 1;
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease;
+    transform 250ms var(--motion-ease),
+    box-shadow 250ms ease,
+    border-color 250ms ease,
+    background 250ms ease,
+    color 250ms ease;
+  backface-visibility: hidden;
 }
 
 .header-cta {
@@ -193,6 +198,9 @@ textarea {
   color: var(--teal-dark);
   font-weight: 700;
   white-space: nowrap;
+  transition:
+    color 220ms ease,
+    transform 220ms var(--motion-ease);
 }
 
 .header-phone svg {
@@ -216,6 +224,11 @@ textarea {
 
 .btn:hover,
 .header-cta:hover {
+  transform: translateY(-3px);
+}
+
+.header-phone:hover {
+  color: var(--ink);
   transform: translateY(-2px);
 }
 
@@ -382,11 +395,27 @@ h3 {
   box-shadow: 0 18px 38px rgba(15, 186, 168, 0.28);
 }
 
+.btn.primary:hover {
+  box-shadow:
+    0 24px 52px rgba(15, 186, 168, 0.34),
+    0 8px 22px rgba(249, 196, 83, 0.24);
+}
+
 .btn.secondary {
   color: #fff;
   background: rgba(255, 255, 255, 0.11);
   border-color: rgba(255, 255, 255, 0.34);
   backdrop-filter: blur(10px);
+}
+
+.btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.48);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.18);
+}
+
+.header-cta:hover {
+  box-shadow: 0 18px 40px rgba(22, 32, 39, 0.28);
 }
 
 .trust-row {
@@ -1475,15 +1504,17 @@ h3 {
 .audience-card,
 .step-card {
   transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
+    transform 350ms var(--motion-ease),
+    box-shadow 350ms ease,
+    border-color 350ms ease;
 }
 
 .info-card:hover,
 .audience-card:hover,
 .step-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow);
+  transform: translateY(-6px);
+  border-color: rgba(15, 186, 168, 0.34);
+  box-shadow: var(--lift-shadow);
 }
 
 .calc-note {
@@ -1577,6 +1608,75 @@ h3 {
   text-decoration: underline;
 }
 
+.outcome-item,
+.proof-item,
+.demo-points div,
+.faq-item,
+.calc-panel,
+.calc-results,
+.lead-form {
+  transition:
+    transform 350ms var(--motion-ease),
+    box-shadow 350ms ease,
+    border-color 350ms ease,
+    background 350ms ease;
+}
+
+.reveal-enter {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 700ms var(--motion-ease),
+    transform 700ms var(--motion-ease);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-enter.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .info-card:hover,
+  .audience-card:hover,
+  .step-card:hover,
+  .outcome-item:hover,
+  .proof-item:hover,
+  .demo-points div:hover,
+  .faq-item:hover,
+  .calc-panel:hover,
+  .calc-results:hover,
+  .lead-form:hover {
+    transform: translateY(-5px);
+    border-color: rgba(15, 186, 168, 0.32);
+    box-shadow: var(--lift-shadow);
+  }
+
+  .proof-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .info-card:hover,
+  .audience-card:hover,
+  .step-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .signal-row {
+    transition:
+      transform 280ms var(--motion-ease),
+      background 280ms ease,
+      border-color 280ms ease;
+  }
+
+  .signal-row:hover {
+    transform: translateX(4px);
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(100, 244, 223, 0.24);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1585,5 +1685,10 @@ h3 {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .reveal-enter {
+    opacity: 1;
+    transform: none;
   }
 }
