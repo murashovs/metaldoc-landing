@@ -636,6 +636,98 @@ h3 {
   line-height: 1;
 }
 
+.no-change {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(237, 248, 246, 0.84)),
+    #fff;
+}
+
+.no-change .section-heading {
+  max-width: 880px;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.comparison-card {
+  display: grid;
+  gap: 0;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--soft-shadow);
+}
+
+.comparison-card h3 {
+  margin-bottom: 18px;
+  font-size: 1.34rem;
+}
+
+.comparison-row {
+  display: grid;
+  gap: 6px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(216, 226, 228, 0.86);
+}
+
+.comparison-row span {
+  color: var(--teal-dark);
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1.24;
+  text-transform: uppercase;
+}
+
+.comparison-row p {
+  margin-bottom: 0;
+  color: #4f5e6a;
+}
+
+.comparison-row strong {
+  color: var(--ink);
+  font-size: 1.12rem;
+}
+
+.robot-card {
+  background:
+    linear-gradient(135deg, rgba(15, 186, 168, 0.14), rgba(249, 196, 83, 0.12)),
+    #fff;
+  border-color: rgba(15, 186, 168, 0.42);
+  box-shadow: 0 22px 54px rgba(15, 186, 168, 0.16);
+}
+
+.robot-card h3 {
+  color: var(--teal-dark);
+}
+
+.comparison-summary {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding: 18px 20px;
+  background: rgba(23, 32, 39, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.comparison-summary p {
+  max-width: 720px;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-weight: 700;
+}
+
+.comparison-summary .btn {
+  flex: 0 0 auto;
+}
+
 .fields {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(340px, 1.1fr);
@@ -1198,6 +1290,7 @@ h3 {
 
   .pain-grid,
   .audience-grid,
+  .comparison-grid,
   .outcome-layout,
   .fields,
   .security-layout,
@@ -1343,9 +1436,14 @@ h3 {
     gap: 12px;
   }
 
+  .comparison-grid {
+    gap: 12px;
+  }
+
   .step-card,
   .info-card,
-  .audience-card {
+  .audience-card,
+  .comparison-card {
     min-height: auto;
     padding: 20px;
   }
@@ -1374,8 +1472,14 @@ h3 {
   .outcome-item,
   .calc-panel,
   .calc-results,
-  .lead-form {
+  .lead-form,
+  .comparison-summary {
     padding: 20px;
+  }
+
+  .comparison-summary {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .security-board {
@@ -1502,7 +1606,8 @@ h3 {
 
 .info-card,
 .audience-card,
-.step-card {
+.step-card,
+.comparison-card {
   transition:
     transform 350ms var(--motion-ease),
     box-shadow 350ms ease,
@@ -1511,7 +1616,8 @@ h3 {
 
 .info-card:hover,
 .audience-card:hover,
-.step-card:hover {
+.step-card:hover,
+.comparison-card:hover {
   transform: translateY(-6px);
   border-color: rgba(15, 186, 168, 0.34);
   box-shadow: var(--lift-shadow);
@@ -1614,7 +1720,8 @@ h3 {
 .faq-item,
 .calc-panel,
 .calc-results,
-.lead-form {
+.lead-form,
+.comparison-summary {
   transition:
     transform 350ms var(--motion-ease),
     box-shadow 350ms ease,
@@ -1641,6 +1748,7 @@ h3 {
   .info-card:hover,
   .audience-card:hover,
   .step-card:hover,
+  .comparison-card:hover,
   .outcome-item:hover,
   .proof-item:hover,
   .demo-points div:hover,
@@ -1659,7 +1767,8 @@ h3 {
 
   .info-card:hover,
   .audience-card:hover,
-  .step-card:hover {
+  .step-card:hover,
+  .comparison-card:hover {
     transform: translateY(-6px);
   }
 

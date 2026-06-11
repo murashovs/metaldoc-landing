@@ -204,6 +204,8 @@ function initRevealEffects() {
       ".info-card",
       ".outcome-item",
       ".step-card",
+      ".comparison-card",
+      ".comparison-summary",
       ".field-cloud span",
       ".calculator-copy",
       ".calc-panel",
