@@ -14,11 +14,11 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlparse
 
 
-LEAD_RECIPIENT = os.environ.get("ROBOTPSA_LEAD_EMAIL", "doctormail@yandex.ru")
+LEAD_RECIPIENT = os.environ.get("ROBOTPSA_LEAD_EMAIL", "")
 LEAD_SENDER = os.environ.get("ROBOTPSA_LEAD_FROM", "robotpsa.ru <noreply@robotpsa.ru>")
 SMTP_HOSTS = [
     host.strip()
-    for host in os.environ.get("ROBOTPSA_SMTP_HOSTS", "mx.yandex.ru,mx.yandex.net").split(",")
+    for host in os.environ.get("ROBOTPSA_SMTP_HOSTS", "").split(",")
     if host.strip()
 ]
 SMTP_TIMEOUT = float(os.environ.get("ROBOTPSA_SMTP_TIMEOUT", "12"))
@@ -166,6 +166,8 @@ class StaticHandler(SimpleHTTPRequestHandler):
             return False
 
     def _try_send_lead_email(self, lead):
+        if not LEAD_RECIPIENT or not SMTP_HOSTS:
+            return False
         try:
             self._send_lead_email(lead)
             return True

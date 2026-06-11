@@ -21,7 +21,7 @@
 - Сервис: `robotpsa-site.service`, слушает только `127.0.0.1:18080`
 - Публичный HTTP: HAProxy `:80` -> redirect на HTTPS для `robotpsa.ru`
 - Публичный HTTPS: HAProxy `:443` -> SNI route -> local TLS terminator -> `robotpsa_web80`
-- Форма: `POST /api/lead`, письмо на `doctormail@yandex.ru`
+- Форма: `POST /api/lead`, локальная очередь заявок на сервере
 - Телефон: `+7 495 970-45-89`
 
 HTTPS включен через Let’s Encrypt, certbot и HAProxy. Подробности и команды - в [docs/operations.md](docs/operations.md).

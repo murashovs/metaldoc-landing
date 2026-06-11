@@ -5,7 +5,7 @@ domain="robotpsa.ru"
 www_domain="www.robotpsa.ru"
 server_ip="45.10.245.231"
 webroot="/srv/robotpsa/current"
-email="doctormail@yandex.ru"
+email="${LETSENCRYPT_EMAIL:-admin@robotpsa.ru}"
 
 check_dns() {
   name="$1"

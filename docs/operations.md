@@ -130,10 +130,10 @@ curl -sSI http://robotpsa.ru/
 - AJAX/HTML fallback endpoint: `POST /api/lead`
 - Серверный обработчик: `/opt/robotpsa/serve_static.py`
 - Тема письма: `Новая заявка с лендинга Робот ПСА`
-- Получатель: `doctormail@yandex.ru`
+- Получатель для SMTP задается серверной переменной `ROBOTPSA_LEAD_EMAIL`; в публичном коде адрес не хранится
 - Отправитель: `robotpsa.ru <noreply@robotpsa.ru>`
 - Локальный журнал заявок: `/var/lib/robotpsa/leads.jsonl`, права `0600`
-- SMTP: попытка прямой отправки на MX Яндекса (`mx.yandex.ru`, fallback `mx.yandex.net`) с STARTTLS
+- SMTP hosts задаются серверной переменной `ROBOTPSA_SMTP_HOSTS`; без этих переменных работает только локальная очередь
 - Источник: `robotpsa.ru`
 - Публичный телефон: `+7 495 970-45-89`
 
