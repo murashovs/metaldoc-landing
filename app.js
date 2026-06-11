@@ -61,9 +61,9 @@ function calcSummaryText() {
 
 updateCalculator();
 
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/doctormail@yandex.ru";
+const FORM_ENDPOINT = "/api/lead";
 
-async function sendFormSubmit(data) {
+async function sendLead(data) {
   const response = await fetch(FORM_ENDPOINT, {
     method: "POST",
     headers: {
@@ -128,7 +128,7 @@ form.addEventListener("submit", async (event) => {
   setFormStatus("Отправляем заявку...", null);
 
   try {
-    await sendFormSubmit(data);
+    await sendLead(data);
     form.reset();
     buttonText.textContent = "Заявка отправлена";
     setFormStatus(
@@ -141,7 +141,7 @@ form.addEventListener("submit", async (event) => {
   } catch (error) {
     buttonText.textContent = initialButtonText;
     setFormStatus(
-      "Не удалось отправить автоматически. Напишите напрямую на doctormail@yandex.ru.",
+      "Не удалось отправить автоматически. Позвоните по номеру +7 495 970-45-89.",
       "error",
     );
   } finally {

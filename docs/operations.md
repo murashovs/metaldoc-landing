@@ -32,7 +32,7 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 
 - GitHub: `https://github.com/murashovs/metaldoc-landing.git`
 - Основная ветка: `main`
-- Страница статическая: `index.html`, `privacy.html`, `styles.css`, `app.js`, `assets/hero-psa-1c.jpg`, `assets/hero-psa-1c-mobile.jpg`
+- Страница и API формы: `index.html`, `privacy.html`, `styles.css`, `app.js`, `assets/hero-psa-1c.jpg`, `assets/hero-psa-1c-mobile.jpg`, `ops/serve_static.py`
 - Операционные скрипты: `ops/`
 
 Проверка JS:
@@ -125,21 +125,24 @@ curl -sSI http://robotpsa.ru/
 
 ## Форма обратной связи
 
-Форма отправляется через FormSubmit:
+Форма отправляется на локальный endpoint сайта:
 
-- AJAX endpoint: `https://formsubmit.co/ajax/doctormail@yandex.ru`
-- HTML fallback action: `https://formsubmit.co/doctormail@yandex.ru`
+- AJAX/HTML fallback endpoint: `POST /api/lead`
+- Серверный обработчик: `/opt/robotpsa/serve_static.py`
 - Тема письма: `Новая заявка с лендинга Робот ПСА`
+- Получатель: `doctormail@yandex.ru`
+- Отправитель: `robotpsa.ru <noreply@robotpsa.ru>`
+- SMTP: прямая отправка на MX Яндекса (`mx.yandex.ru`, fallback `mx.yandex.net`) с STARTTLS
 - Источник: `robotpsa.ru`
 - Публичный телефон: `+7 495 970-45-89`
 
-Важно: FormSubmit обычно требует подтверждения адреса при первой заявке. Если письма не приходят, проверить входящие и спам на `doctormail@yandex.ru` и подтвердить FormSubmit.
-
-Fallback `_next` указывает на:
+HTML fallback после успешной отправки делает redirect на:
 
 ```text
 https://robotpsa.ru/?sent=1#demo
 ```
+
+Проверка API без отправки письма невозможна: успешный `POST /api/lead` отправляет реальное письмо. Для проверки использовать явную тестовую компанию, например `Codex test`.
 
 ## Let’s Encrypt и HTTPS
 
@@ -189,6 +192,14 @@ printf 'show stat\n' | socat - /run/haproxy/admin.sock | grep -E 'robotpsa|https
 node --check app.js
 COPYFILE_DISABLE=1 tar --no-xattrs -czf robotpsa-site.tar.gz \
   index.html privacy.html styles.css app.js assets
+```
+
+Если менялся `ops/serve_static.py`, отдельно проверить и обновить серверный handler:
+
+```bash
+python3 -m py_compile ops/serve_static.py
+scp ops/serve_static.py root@mail.itpr.ru:/tmp/serve_static.py.robotpsa
+ssh root@mail.itpr.ru 'python3 -m py_compile /tmp/serve_static.py.robotpsa && install -o root -g root -m 0755 /tmp/serve_static.py.robotpsa /opt/robotpsa/serve_static.py'
 ```
 
 На сервере:
