@@ -3,26 +3,63 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Приемо-сдаточные акты в 1С без ручного ввода | Робот ПСА</title>
+    <title>Распознавание приемо-сдаточных актов в 1С без ручного ввода | Робот ПСА</title>
     <meta
       name="description"
-      content="Сервис распознает приемо-сдаточные акты для металлоприемок, показывает сомнительные поля и создает документы, движения и проводки в 1С."
+      content="Сервис распознает приемо-сдаточные акты для металлоприемок, показывает сомнительные поля и создает документы, движения и проводки в 1С. Проверим качество на ваших актах."
     />
+    <link rel="canonical" href="https://robotpsa.ru/" />
+    <meta name="theme-color" content="#172027" />
     <meta property="og:title" content="Приемо-сдаточные акты в 1С без ручного ввода" />
     <meta
       property="og:description"
       content="Загрузите пачку сканов ПСА. Бухгалтер проверяет сомнительные поля, а документы, движения и проводки создаются в 1С."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="assets/hero-psa-1c.png" />
+    <meta property="og:url" content="https://robotpsa.ru/" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:image" content="https://robotpsa.ru/assets/hero-psa-1c.jpg" />
+    <meta property="og:image:width" content="1672" />
+    <meta property="og:image:height" content="941" />
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23172027'/%3E%3Cpath d='M18 44V14h19c7 0 12 5 12 12 0 6-4 10-10 11l11 7H38l-10-7v7H18Zm10-16h8c3 0 5-2 5-5s-2-5-5-5h-8v10Z' fill='%2364f4df'/%3E%3C/svg%3E"
     />
-    <link rel="preload" href="assets/hero-psa-1c.png" as="image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+    />
+    <link rel="preload" href="assets/hero-psa-1c.jpg" as="image" media="(min-width: 721px)" />
+    <link rel="preload" href="assets/hero-psa-1c-mobile.jpg" as="image" media="(max-width: 720px)" />
     <link rel="stylesheet" href="styles.css" />
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
     <script src="app.js" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://robotpsa.ru/#org",
+            "name": "Робот ПСА",
+            "url": "https://robotpsa.ru/",
+            "email": "doctormail@yandex.ru",
+            "telephone": "+74959704589",
+            "description": "Сервис распознавания приемо-сдаточных актов с загрузкой документов, движений и проводок в 1С."
+          },
+          {
+            "@type": "Service",
+            "name": "Распознавание приемо-сдаточных актов и загрузка в 1С",
+            "serviceType": "Автоматизация ввода первичных документов",
+            "provider": { "@id": "https://robotpsa.ru/#org" },
+            "areaServed": "RU",
+            "audience": { "@type": "BusinessAudience", "name": "Пункты приема металлолома" }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <header class="site-header" data-elevate>
@@ -33,16 +70,32 @@
           <small>Акты в 1С без ручной рутины</small>
         </span>
       </a>
-      <nav class="nav-links" aria-label="Главная навигация">
+      <nav class="nav-links" id="siteNav" aria-label="Главная навигация">
         <a href="#workflow">Как работает</a>
         <a href="#calculator">Экономия</a>
         <a href="#security">Контроль</a>
+        <a href="#faq">Вопросы</a>
         <a href="#demo">Демо</a>
       </nav>
-      <a class="header-cta" href="#demo">
-        <i data-lucide="calendar-check" aria-hidden="true"></i>
-        <span>Проверить акты</span>
-      </a>
+      <div class="header-actions">
+        <a class="header-phone" href="tel:+74959704589" aria-label="Позвонить по номеру +7 495 970-45-89">
+          <i data-lucide="phone" aria-hidden="true"></i>
+          <span>+7 495 970-45-89</span>
+        </a>
+        <a class="header-cta" href="#demo">
+          <i data-lucide="calendar-check" aria-hidden="true"></i>
+          <span>Проверить акты</span>
+        </a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="siteNav"
+          aria-label="Открыть меню"
+        >
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+      </div>
     </header>
 
     <main id="top">
@@ -50,7 +103,7 @@
         <div class="hero-copy">
           <div class="eyebrow">
             <span class="pulse-dot" aria-hidden="true"></span>
-            <span class="eyebrow-text">Уже внедрено: экономит время и деньги</span>
+            <span class="eyebrow-text">Уже в работе у действующей металлоприемки</span>
           </div>
           <h1>Приемо-сдаточные акты в 1С без ручного ввода</h1>
           <p class="hero-lead">
@@ -69,36 +122,33 @@
             </a>
           </div>
           <div class="trust-row" aria-label="Ключевые преимущества">
-            <span><i data-lucide="scan-text" aria-hidden="true"></i>Смешанный текст</span>
-            <span><i data-lucide="badge-check" aria-hidden="true"></i>Проверка сомнений</span>
-            <span><i data-lucide="database-zap" aria-hidden="true"></i>Документы в 1С</span>
+            <span><i data-lucide="scan-text" aria-hidden="true"></i>Рукописный и печатный текст</span>
+            <span><i data-lucide="badge-check" aria-hidden="true"></i>Сомнительное — на проверку</span>
+            <span><i data-lucide="database-zap" aria-hidden="true"></i>Документы и проводки в 1С</span>
           </div>
-        </div>
-        <div class="hero-visual" aria-label="Визуал распознавания документов">
-          <img src="assets/hero-psa-1c.png" alt="Пачка приемо-сдаточных актов, проверенные поля и передача данных в учетную систему 1С" />
         </div>
       </section>
 
-      <section class="proof-strip" aria-label="Проверка качества на ваших документах">
+      <section class="proof-strip" aria-label="Ключевые цифры сервиса">
         <div class="proof-strip-item">
           <i data-lucide="badge-check" aria-hidden="true"></i>
           <span>
             <strong>Уже внедрено</strong>
-            <small>Работает в реальном процессе металлоприемки.</small>
+            <small>Боевой процесс действующей металлоприемки, не прототип.</small>
           </span>
         </div>
         <div class="proof-strip-item">
-          <i data-lucide="scan-search" aria-hidden="true"></i>
+          <i data-lucide="target" aria-hidden="true"></i>
           <span>
-            <strong>Экономит время и деньги</strong>
-            <small>Сокращает ручной ввод и стоимость обработки ПСА.</small>
+            <strong>До 99% точности</strong>
+            <small>По ключевым полям: вес, сумма, ФИО, строки лома.</small>
           </span>
         </div>
         <div class="proof-strip-item">
-          <i data-lucide="database-zap" aria-hidden="true"></i>
+          <i data-lucide="timer" aria-hidden="true"></i>
           <span>
-            <strong>Проверка на ваших актах</strong>
-            <small>Покажем качество и загрузку в вашу 1С.</small>
+            <strong>7 минут → ~1 минута на акт</strong>
+            <small>Ручной ввод заменяется быстрой проверкой.</small>
           </span>
         </div>
       </section>
@@ -222,6 +272,11 @@
               Подставьте объемы своей металлоприемки. На демо посчитаем эффект
               по вашим актам и процессу.
             </p>
+            <p class="calc-note">
+              Расчет ориентировочный: сравниваем время ручного ввода и время
+              проверки после распознавания. Текущие значения калькулятора
+              приложатся к вашей заявке.
+            </p>
           </div>
           <form class="calc-panel" aria-label="Калькулятор экономии времени и денег">
             <label class="range-field">
@@ -267,6 +322,10 @@
               <span>Ручного ввода меньше</span>
               <strong id="factorSaved">в 5.8 раза</strong>
             </div>
+            <a class="btn primary calc-cta" href="#demo">
+              <i data-lucide="arrow-down-right" aria-hidden="true"></i>
+              Проверить на моих актах
+            </a>
           </div>
         </div>
       </section>
@@ -340,6 +399,7 @@
               <li><i data-lucide="check-circle-2" aria-hidden="true"></i>Порог уверенности настраивается под ваш процесс.</li>
               <li><i data-lucide="check-circle-2" aria-hidden="true"></i>Исходный фрагмент документа виден рядом с полем.</li>
               <li><i data-lucide="check-circle-2" aria-hidden="true"></i>Загрузка адаптируется под вашу конфигурацию 1С.</li>
+              <li><i data-lucide="check-circle-2" aria-hidden="true"></i>Персональные данные обрабатываются с учетом 152-ФЗ.</li>
             </ul>
           </div>
         </div>
@@ -372,26 +432,101 @@
         </div>
       </section>
 
+      <section id="faq" class="faq section-band">
+        <div class="section-heading">
+          <p class="section-kicker">Вопросы</p>
+          <h2>Частые вопросы главбухов и собственников</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>
+              Что с персональными данными и 152-ФЗ?
+              <i data-lucide="plus" aria-hidden="true"></i>
+            </summary>
+            <p>
+              В актах есть паспортные данные, поэтому относимся к ним строго: передача
+              по защищенному каналу, данные не передаются третьим лицам и не используются
+              для посторонних целей. Сроки хранения и порядок удаления фиксируем в договоре.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>
+              С какой конфигурацией 1С это работает?
+              <i data-lucide="plus" aria-hidden="true"></i>
+            </summary>
+            <p>
+              Загрузка адаптируется под вашу базу: типовые и отраслевые конфигурации
+              для металлоприемки. На демо проверяем сценарий именно на вашей 1С,
+              а не на абстрактном примере.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>
+              Рукописный текст действительно распознается?
+              <i data-lucide="plus" aria-hidden="true"></i>
+            </summary>
+            <p>
+              Да, смешанные акты — рукописные и печатные поля — это основной сценарий.
+              Спорные значения сервис не «угадывает» молча, а подсвечивает: бухгалтер
+              видит фрагмент скана рядом с полем и подтверждает или исправляет.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>
+              Что если поле распознано неверно?
+              <i data-lucide="plus" aria-hidden="true"></i>
+            </summary>
+            <p>
+              У каждого значения есть уровень уверенности. Все, что ниже порога,
+              попадает в список на проверку. В 1С загружаются только подтвержденные
+              данные — ошибка не проходит в учет незамеченной.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>
+              Сколько занимает подключение?
+              <i data-lucide="plus" aria-hidden="true"></i>
+            </summary>
+            <p>
+              Первый результат показываем уже на демо — на пачке ваших сканов.
+              Подключение к рабочей базе обычно занимает от нескольких дней
+              и зависит от конфигурации 1С.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>
+              Сколько это стоит?
+              <i data-lucide="plus" aria-hidden="true"></i>
+            </summary>
+            <p>
+              Оплата привязана к объему обработанных актов и в разы ниже стоимости
+              ручного ввода. Точную цифру считаем на демо по вашим объемам — вместе
+              с расчетом экономии из калькулятора выше.
+            </p>
+          </details>
+        </div>
+      </section>
+
       <section id="demo" class="demo section-band">
         <div class="demo-copy">
           <p class="section-kicker">Демо</p>
           <h2>Покажем, сколько времени и денег можно сэкономить на ваших ПСА</h2>
           <p>
-            Оставьте контакты: возьмем ваши акты, покажем распознавание полей
+            Оставьте контакты или позвоните: возьмем ваши акты, покажем распознавание полей
             и разберем, как это ляжет в вашу 1С.
           </p>
-          <div class="demo-points" aria-label="Что разберем на демонстрации">
+          <div class="demo-points" aria-label="Как проходит демонстрация">
+            <div>
+              <i data-lucide="video" aria-hidden="true"></i>
+              <span>Онлайн, 30 минут, без установки ПО</span>
+            </div>
             <div>
               <i data-lucide="files" aria-hidden="true"></i>
-              <span>Возьмем пачку ваших ПСА</span>
+              <span>Нужна только пачка сканов ваших ПСА</span>
             </div>
             <div>
-              <i data-lucide="scan-text" aria-hidden="true"></i>
-              <span>Покажем уверенность по ключевым полям</span>
-            </div>
-            <div>
-              <i data-lucide="database-zap" aria-hidden="true"></i>
-              <span>Обсудим загрузку в вашу конфигурацию 1С</span>
+              <i data-lucide="handshake" aria-hidden="true"></i>
+              <span>Без предоплаты и обязательств</span>
             </div>
           </div>
         </div>
@@ -407,6 +542,7 @@
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_next" value="https://robotpsa.ru/?sent=1#demo" />
           <input type="hidden" name="source" value="robotpsa.ru" />
+          <input type="hidden" name="calculator" id="calcSummary" />
           <label class="form-trap" hidden aria-hidden="true">
             <span>Сайт</span>
             <input name="website" type="text" tabindex="-1" autocomplete="off" />
@@ -421,7 +557,7 @@
           </label>
           <label>
             <span>Телефон или Telegram</span>
-            <input name="contact" type="text" placeholder="+7..." autocomplete="tel" required />
+            <input name="contact" type="text" inputmode="tel" placeholder="+7 495 970-45-89" autocomplete="tel" required />
           </label>
           <label>
             <span>Примерный объем</span>
@@ -433,24 +569,51 @@
               <option>больше 15 000 актов в месяц</option>
             </select>
           </label>
+          <label class="consent">
+            <input type="checkbox" name="consent" value="да" required />
+            <span>Соглашаюсь на обработку персональных данных
+              (<a href="privacy.html" target="_blank" rel="noopener">политика</a>)</span>
+          </label>
           <button class="btn primary form-button" type="submit">
             <i data-lucide="arrow-right" aria-hidden="true"></i>
             <span>Показать на моих ПСА</span>
           </button>
-          <p class="form-note" id="formNote">После отправки покажем следующий шаг для связи.</p>
+          <p class="form-note" id="formNote">Ответим в рабочее время и договоримся о коротком созвоне.</p>
         </form>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="brand footer-brand">
-        <span class="brand-mark" aria-hidden="true">Р</span>
-        <span>
-          <strong>Робот ПСА</strong>
-          <small>Автоввод ПСА в 1С</small>
-        </span>
+      <div class="footer-grid">
+        <div class="brand footer-brand">
+          <span class="brand-mark" aria-hidden="true">Р</span>
+          <span>
+            <strong>Робот ПСА</strong>
+            <small>Автоввод ПСА в 1С</small>
+          </span>
+        </div>
+        <nav class="footer-nav" aria-label="Навигация в подвале">
+          <a href="#workflow">Как работает</a>
+          <a href="#calculator">Экономия</a>
+          <a href="#faq">Вопросы</a>
+          <a href="#demo">Демо</a>
+        </nav>
+        <div class="footer-contacts" aria-label="Контакты">
+          <a class="footer-contact" href="tel:+74959704589">
+            <i data-lucide="phone" aria-hidden="true"></i>
+            +7 495 970-45-89
+          </a>
+          <a class="footer-contact" href="mailto:doctormail@yandex.ru">
+            <i data-lucide="mail" aria-hidden="true"></i>
+            doctormail@yandex.ru
+          </a>
+        </div>
       </div>
-      <a href="#top">Наверх</a>
+      <div class="footer-meta">
+        <span>© 2026 Робот ПСА</span>
+        <a href="privacy.html">Политика обработки персональных данных</a>
+        <a href="#top">Наверх</a>
+      </div>
     </footer>
   </body>
 </html>

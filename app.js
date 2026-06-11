@@ -44,6 +44,17 @@ function updateCalculator() {
   calc.factorSaved.textContent = `в ${factor.toFixed(1).replace(".", ",")} раза`;
 }
 
+function calcSummaryText() {
+  return [
+    `актов в день: ${calc.acts.value}`,
+    `мин на ручной ввод: ${calc.manual.value}`,
+    `мин на проверку: ${calc.review.value}`,
+    `рабочих дней: ${calc.days.value}`,
+    `час бухгалтера: ${calc.hourRate.value} ₽`,
+    `экономия: ${calc.moneySaved.textContent}, ${calc.hoursSaved.textContent}`,
+  ].join("; ");
+}
+
 ["acts", "manual", "review", "days", "hourRate"].forEach((key) => {
   calc[key].addEventListener("input", updateCalculator);
 });
@@ -73,6 +84,7 @@ async function sendFormSubmit(data) {
 
 const form = document.querySelector(".lead-form");
 const formNote = document.querySelector("#formNote");
+const calcSummaryInput = document.querySelector("#calcSummary");
 
 const initialButtonText = form.querySelector(".form-button span").textContent;
 
@@ -100,6 +112,10 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
+  if (calcSummaryInput) {
+    calcSummaryInput.value = calcSummaryText();
+  }
+
   const button = form.querySelector(".form-button");
   const buttonText = button.querySelector("span");
   const data = Object.fromEntries(new FormData(form).entries());
@@ -109,7 +125,7 @@ form.addEventListener("submit", async (event) => {
 
   button.disabled = true;
   buttonText.textContent = "Отправляем...";
-  setFormStatus("Отправляем заявку на doctormail@yandex.ru.", null);
+  setFormStatus("Отправляем заявку...", null);
 
   try {
     await sendFormSubmit(data);
@@ -143,12 +159,44 @@ function updateHeaderElevation() {
 window.addEventListener("scroll", updateHeaderElevation, { passive: true });
 updateHeaderElevation();
 
-window.addEventListener("load", () => {
+const navToggle = document.querySelector(".nav-toggle");
+const siteNav = document.querySelector("#siteNav");
+
+if (navToggle && siteNav) {
+  navToggle.addEventListener("click", () => {
+    const open = header.classList.toggle("nav-open");
+    navToggle.setAttribute("aria-expanded", String(open));
+    navToggle.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+  });
+
+  siteNav.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+      header.classList.remove("nav-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && header.classList.contains("nav-open")) {
+      header.classList.remove("nav-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.focus();
+    }
+  });
+}
+
+function initIcons() {
   if (window.lucide) {
     window.lucide.createIcons({
       attrs: {
         "aria-hidden": "true",
       },
     });
+    return true;
   }
-});
+  return false;
+}
+
+if (!initIcons()) {
+  window.addEventListener("load", initIcons);
+}

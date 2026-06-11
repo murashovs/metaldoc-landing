@@ -32,7 +32,7 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 
 - GitHub: `https://github.com/murashovs/metaldoc-landing.git`
 - Основная ветка: `main`
-- Страница статическая: `index.html`, `styles.css`, `app.js`, `assets/hero-psa-1c.png`
+- Страница статическая: `index.html`, `privacy.html`, `styles.css`, `app.js`, `assets/hero-psa-1c.jpg`, `assets/hero-psa-1c-mobile.jpg`
 - Операционные скрипты: `ops/`
 
 Проверка JS:
@@ -131,6 +131,7 @@ curl -sSI http://robotpsa.ru/
 - HTML fallback action: `https://formsubmit.co/doctormail@yandex.ru`
 - Тема письма: `Новая заявка с лендинга Робот ПСА`
 - Источник: `robotpsa.ru`
+- Публичный телефон: `+7 495 970-45-89`
 
 Важно: FormSubmit обычно требует подтверждения адреса при первой заявке. Если письма не приходят, проверить входящие и спам на `doctormail@yandex.ru` и подтвердить FormSubmit.
 
@@ -187,9 +188,7 @@ printf 'show stat\n' | socat - /run/haproxy/admin.sock | grep -E 'robotpsa|https
 ```bash
 node --check app.js
 COPYFILE_DISABLE=1 tar --no-xattrs -czf robotpsa-site.tar.gz \
-  --exclude='./serve_static.py' \
-  --exclude='./robotpsa-site.service' \
-  .
+  index.html privacy.html styles.css app.js assets
 ```
 
 На сервере:

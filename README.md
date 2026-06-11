@@ -5,9 +5,10 @@
 ## Состав
 
 - `index.html` — структура страницы
+- `privacy.html` — политика обработки персональных данных
 - `styles.css` — адаптивная визуальная система
 - `app.js` — калькулятор экономии и состояние формы
-- `assets/hero-psa-1c.png` — hero-изображение
+- `assets/hero-psa-1c.jpg`, `assets/hero-psa-1c-mobile.jpg` — hero-изображения
 - `ops/` — серверные скрипты для сертификата и HAProxy
 - `docs/operations.md` — эксплуатационная документация
 
@@ -20,5 +21,6 @@
 - Публичный HTTP: HAProxy `:80` -> redirect на HTTPS для `robotpsa.ru`
 - Публичный HTTPS: HAProxy `:443` -> SNI route -> local TLS terminator -> `robotpsa_web80`
 - Форма: FormSubmit на `doctormail@yandex.ru`
+- Телефон: `+7 495 970-45-89`
 
 HTTPS включен через Let’s Encrypt, certbot и HAProxy. Подробности и команды - в [docs/operations.md](docs/operations.md).
