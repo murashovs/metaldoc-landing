@@ -132,7 +132,8 @@ curl -sSI http://robotpsa.ru/
 - Тема письма: `Новая заявка с лендинга Робот ПСА`
 - Получатель: `doctormail@yandex.ru`
 - Отправитель: `robotpsa.ru <noreply@robotpsa.ru>`
-- SMTP: прямая отправка на MX Яндекса (`mx.yandex.ru`, fallback `mx.yandex.net`) с STARTTLS
+- Локальный журнал заявок: `/var/lib/robotpsa/leads.jsonl`, права `0600`
+- SMTP: попытка прямой отправки на MX Яндекса (`mx.yandex.ru`, fallback `mx.yandex.net`) с STARTTLS
 - Источник: `robotpsa.ru`
 - Публичный телефон: `+7 495 970-45-89`
 
@@ -142,7 +143,13 @@ HTML fallback после успешной отправки делает redirect
 https://robotpsa.ru/?sent=1#demo
 ```
 
-Проверка API без отправки письма невозможна: успешный `POST /api/lead` отправляет реальное письмо. Для проверки использовать явную тестовую компанию, например `Codex test`.
+Сейчас API считает заявку принятой после записи в локальный журнал. Прямая SMTP-доставка на Яндекс может быть отклонена антиспамом, поэтому для гарантированной доставки в почту нужен SMTP-relay с авторизацией. До настройки relay заявки можно читать так:
+
+```bash
+tail -n 20 /var/lib/robotpsa/leads.jsonl
+```
+
+Проверка API создает реальную запись и может попытаться отправить письмо. Для проверки использовать явную тестовую компанию, например `Codex test`.
 
 ## Let’s Encrypt и HTTPS
 
@@ -200,6 +207,13 @@ COPYFILE_DISABLE=1 tar --no-xattrs -czf robotpsa-site.tar.gz \
 python3 -m py_compile ops/serve_static.py
 scp ops/serve_static.py root@mail.itpr.ru:/tmp/serve_static.py.robotpsa
 ssh root@mail.itpr.ru 'python3 -m py_compile /tmp/serve_static.py.robotpsa && install -o root -g root -m 0755 /tmp/serve_static.py.robotpsa /opt/robotpsa/serve_static.py'
+```
+
+Для записи заявок сервису нужен writable state directory:
+
+```ini
+[Service]
+StateDirectory=robotpsa
 ```
 
 На сервере:

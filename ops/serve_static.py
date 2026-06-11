@@ -6,6 +6,7 @@ import mimetypes
 import os
 import smtplib
 import ssl
+import time
 from email.message import EmailMessage
 from email.utils import formatdate
 from http import HTTPStatus
@@ -21,6 +22,7 @@ SMTP_HOSTS = [
     if host.strip()
 ]
 SMTP_TIMEOUT = float(os.environ.get("ROBOTPSA_SMTP_TIMEOUT", "12"))
+LEAD_QUEUE_PATH = os.environ.get("ROBOTPSA_LEAD_QUEUE", "/var/lib/robotpsa/leads.jsonl")
 MAX_LEAD_BODY = 64 * 1024
 
 
@@ -71,15 +73,19 @@ class StaticHandler(SimpleHTTPRequestHandler):
                 self._send_lead_success(accepts_json)
                 return
             self._validate_lead(lead)
-            self._send_lead_email(lead)
+            queued = self._queue_lead(lead)
+            mail_sent = self._try_send_lead_email(lead)
+            if not queued and not mail_sent:
+                raise RuntimeError("Lead was not queued or emailed")
         except ValueError as exc:
             self._send_lead_error(str(exc), HTTPStatus.BAD_REQUEST, accepts_json)
             return
-        except Exception:
+        except Exception as exc:
+            self.log_error("lead delivery failed: %s: %s", type(exc).__name__, exc)
             self._send_lead_error("Не удалось отправить заявку", HTTPStatus.BAD_GATEWAY, accepts_json)
             return
 
-        self._send_lead_success(accepts_json)
+        self._send_lead_success(accepts_json, queued=queued, mail_sent=mail_sent)
 
     def _read_lead(self):
         content_length = int(self.headers.get("Content-Length", "0") or "0")
@@ -125,6 +131,48 @@ class StaticHandler(SimpleHTTPRequestHandler):
         if missing:
             raise ValueError("Заполните поля: " + ", ".join(missing))
 
+    def _queue_lead(self, lead):
+        record = {
+            "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "remote_addr": self.client_address[0] if self.client_address else "",
+            "user_agent": self.headers.get("User-Agent", ""),
+            "lead": {
+                key: lead.get(key, "")
+                for key in (
+                    "company",
+                    "name",
+                    "contact",
+                    "volume",
+                    "calculator",
+                    "page",
+                    "referrer",
+                    "source",
+                    "site",
+                )
+            },
+        }
+        line = (json.dumps(record, ensure_ascii=False) + "\n").encode("utf-8")
+
+        try:
+            queue_dir = os.path.dirname(LEAD_QUEUE_PATH)
+            if queue_dir:
+                os.makedirs(queue_dir, mode=0o700, exist_ok=True)
+            fd = os.open(LEAD_QUEUE_PATH, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o600)
+            with os.fdopen(fd, "ab") as file:
+                file.write(line)
+            return True
+        except Exception as exc:
+            self.log_error("lead queue failed: %s: %s", type(exc).__name__, exc)
+            return False
+
+    def _try_send_lead_email(self, lead):
+        try:
+            self._send_lead_email(lead)
+            return True
+        except Exception as exc:
+            self.log_error("lead email failed: %s: %s", type(exc).__name__, exc)
+            return False
+
     def _send_lead_email(self, lead):
         msg = EmailMessage()
         msg["From"] = LEAD_SENDER
@@ -145,6 +193,7 @@ class StaticHandler(SimpleHTTPRequestHandler):
                     smtp.send_message(msg)
                     return
             except Exception as exc:
+                self.log_error("smtp host %s failed: %s: %s", host, type(exc).__name__, exc)
                 last_error = exc
         raise RuntimeError("SMTP delivery failed") from last_error
 
@@ -167,9 +216,9 @@ class StaticHandler(SimpleHTTPRequestHandler):
                 lines.append(f"{label}: {value}")
         return "\n".join(lines) + "\n"
 
-    def _send_lead_success(self, accepts_json):
+    def _send_lead_success(self, accepts_json, queued=False, mail_sent=False):
         if accepts_json:
-            self._send_json({"success": True}, HTTPStatus.OK)
+            self._send_json({"success": True, "queued": queued, "mailSent": mail_sent}, HTTPStatus.OK)
             return
         self.send_response(HTTPStatus.SEE_OTHER)
         self.send_header("Location", "/?sent=1#demo")
